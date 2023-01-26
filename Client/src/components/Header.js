@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 // import components
 import Socials from './Socials';
 import Logo from '../img/header/logo.png';
@@ -13,7 +13,27 @@ import { ImUser } from "react-icons/im";
 
 const Header = () => {
   const { user, dispatch } = useContext(Context);
-  const PF = "http://localhost:3000/public/images/"
+
+  const [image1, setImage1] = useState([]);
+
+  useEffect(() => {
+    const getImage1= async (fileName) => {
+
+      await fetch("/image/" + fileName, {
+        method: 'GET'
+      })
+      .then(response => response.blob())
+      .then( res => {
+        console.log(res);
+        var img = URL.createObjectURL(res);
+        setImage1(img);
+        console.log("get profile picture 1");
+        console.log(img)
+    })};
+    if (user){
+      getImage1(user?.profilePic);
+    }    
+  }, [user]);
 
 
   return (
@@ -72,7 +92,7 @@ const Header = () => {
             
             <div className='text-[#696c6d] hover:text-primary transition self-center'>
               <Link to="/settings">
-                <img className=" w-10 h-10 rounded-full " src={PF+user.profilePic} alt="" />
+                <img className=" w-10 h-10 rounded-full " src={image1} alt="" />
               </Link>
 
             </div>

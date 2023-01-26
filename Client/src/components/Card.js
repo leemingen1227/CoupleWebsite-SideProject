@@ -34,10 +34,11 @@ const Card = ({audioFile}) => {
   const location = useLocation();
   const path = location.pathname.split("/")[2];
 
-  const [audio, setAudio] = useState({});
+  const [audioName, setAudioName] = useState({});
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
   const [author, setAuthor] = useState("");
+  const [audio, setAudio] = useState({});
 
   useEffect(() => {
     const getMessage = async () => {
@@ -46,11 +47,34 @@ const Card = ({audioFile}) => {
       const res = await axios.get('/messages/' + path);
       setTitle(res.data.title);
       setDesc(res.data.desc);
-      setAudio(res.data.audio);
+      setAudioName(res.data.audio);
       setAuthor(res.data.author);
+      console.log(res.data);
     };
     getMessage();
   }, [path]);
+
+  // useEffect(() => {
+  //   const getAudio= async (fileName) => {
+  //     let token = localStorage.getItem('token');
+  //     setAuthToken(token);
+
+  //     await fetch("/audio/" + fileName, {
+  //       method: 'GET'
+  //     })
+  //     .then(response => response.blob())
+  //     .then( res => {
+  //       console.log(res);
+  //       const aud = URL.createObjectURL(res);
+  //       // setAudio(aud);
+  //       console.log("this is get message");
+  //       // console.log(aud)
+  //     })
+  //   };
+
+  //   getAudio(audioName);
+    
+  // }, [audioName]);
  
 
   return (
@@ -75,7 +99,7 @@ const Card = ({audioFile}) => {
         <p className='max-w-[300px] text-[#000000] mb-6'>
           {desc}
         </p>
-        <audio controls  src={PF + audio} />
+        <audio controls  src={PF + audioName} />
         {/* btn & price wrapper */}
         <div className='flex items-center gap-x-[20px] mb-12'>
           <button className='bg-[#2d2b2c] text-white text-base font-medium py-[16px] px-[40px] rounded-lg mt-8'>

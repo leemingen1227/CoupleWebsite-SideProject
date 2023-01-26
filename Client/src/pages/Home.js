@@ -62,8 +62,8 @@ const Home = () => {
             <p className='text-[26px] lg:text-[36px] font-primary mb-4 lg:mb-12'>
               For you and who you care about
             </p>
-            <Button type='submit' variant='primary' onClick={(e) => postDish(e)}
-                                 className='w-full my-5 py-2 bg-slate-600 shadow-lg shadow-slate-600/50 hover:shadow-slate-600/40 text-white font-semibold rounded-lg'>Register</Button>
+            {/* <Button type='submit' variant='primary' onClick={(e) => postDish(e)}
+                                 className='w-full my-5 py-2 bg-slate-600 shadow-lg shadow-slate-600/50 hover:shadow-slate-600/40 text-white font-semibold rounded-lg'>Register</Button> */}
           </motion.div>
           {/* image */}
           <div className='flex justify-end max-h-96 lg:max-h-max  '>

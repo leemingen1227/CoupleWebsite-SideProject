@@ -9,27 +9,72 @@ import "../css/singlePost.css"
 import {TbEdit, TbTrash} from 'react-icons/tb'
 
 export default function SinglePost() {
-  const location = useLocation();
-  const path = location.pathname.split("/")[2];
+  const loc = useLocation();
+  const path = loc.pathname.split("/")[2];
   const [post, setPost] = useState({});
   const PF ="http://localhost:3000/public/images/";
   const { user } = useContext(Context);
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
   const [updateMode, setUpdateMode] = useState(false);
+  const [image, setImage] = useState([]);
+  const [imageName, setImageName] = useState("");
+  var img = ''
+
+  // const getImage= async (fileName) => {
+  //   let token = localStorage.getItem('token');
+  //   setAuthToken(token);
+  //   const res = await axios.get("/image/" + fileName);
+  //   setImage(res);
+  //   console.log("this is get message");
+  // }
 
   useEffect(() => {
     const getPost = async () => {
       console.log(path);
       let token = localStorage.getItem('token');
       setAuthToken(token);
-      const res = await axios.get(path);
+      const res = await axios.get(`/blog/${path}`);
+      console.log(res);
+       
+      
       setPost(res.data);
       setTitle(res.data.title);
       setDesc(res.data.desc);
+      setImageName(res.data.photo);
+      
     };
     getPost();
-  }, [path]);
+    
+  }, []);
+
+  useEffect(() => {
+    const getImage= async (fileName) => {
+      let token = localStorage.getItem('token');
+      setAuthToken(token);
+
+      await fetch("/image/" + fileName, {
+        method: 'GET'
+      })
+      .then(response => response.blob())
+      .then( res => {
+        console.log(res);
+        img = URL.createObjectURL(res);
+        setImage(img);
+        console.log("this is get message");
+        console.log(img)
+      })
+
+
+      // const res = await axios.get("/image/" + fileName);
+      // console.log(res);
+      // setImage(res.data);
+      // console.log("this is get message");
+    };
+
+    getImage(imageName);
+    
+  }, [post]);
 
   const handleDelete = async () => {
     try {
@@ -58,7 +103,7 @@ export default function SinglePost() {
     <div className="flex flex-auto justify-center pt-36 lg:pt-48 pb-8">
       <div className="flex-col">
         {post.photo && (
-          <img src={PF + post.photo} alt="" className="singlePostImg" />
+          <img src={image} alt="" className="singlePostImg" />
         )}
         {updateMode ? (
           <input

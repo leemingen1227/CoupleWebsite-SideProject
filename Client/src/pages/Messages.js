@@ -15,7 +15,9 @@ const Messages = () => {
     const [messages, setMessages] = useState([]);
 
     const { user, dispatch } = useContext(Context);
-    const PF = "http://localhost:3000/public/images/"
+
+    const [image1, setImage1] = useState([]);
+    const [image2, setImage2] = useState([]);
 
     useEffect(() => {
         const fetchMessages = async () => {
@@ -30,6 +32,39 @@ const Messages = () => {
         fetchMessages();
       }, []);
 
+    useEffect(() => {
+    const getImage1= async (fileName) => {
+
+        await fetch("/image/" + fileName, {
+        method: 'GET'
+        })
+        .then(response => response.blob())
+        .then( res => {
+        console.log(res);
+        var img = URL.createObjectURL(res);
+        setImage1(img);
+        console.log("get profile picture 1");
+        console.log(img)
+    })};
+    const getImage2= async (fileName) => {
+
+        await fetch("/image/" + fileName, {
+        method: 'GET'
+        })
+        .then(response => response.blob())
+        .then( res => {
+        console.log(res);
+        var img = URL.createObjectURL(res);
+        setImage2(img);
+        console.log("get profile picture 2");
+        console.log(img)
+    })};
+    getImage1(user.profilePic);
+    getImage2(user.profilePic2);
+
+    
+    }, [user]);
+
       return (
   
           <div className='flex flex-auto justify-center pt-36 lg:pt-48 pb-8"  '>
@@ -41,11 +76,11 @@ const Messages = () => {
                     <div className="flex flex-row">
                         {message.author === 'her' ? (
                             <div className="flex self-center mx-5">
-                                <img className=" w-12 h-12 rounded-full " src={PF+user.profilePic} alt="" />
+                                <img className=" w-12 h-12 rounded-full " src={image1} alt="" />
                             </div>
                         ):(
                             <div className="flex self-center mx-5">
-                                <img className=" w-12 h-12 rounded-full " src={PF+user.profilePic2} alt="" />
+                                <img className=" w-12 h-12 rounded-full " src={image2} alt="" />
                             </div>
                         )}
                         

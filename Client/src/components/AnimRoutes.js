@@ -1,9 +1,6 @@
 import React from 'react';
 // import pages
 import Home from '../pages/Home';
-import About from '../pages/About';
-import Portfolio from '../pages/Portfolio';
-import Contact from '../pages/Contact';
 import Login from '../pages/Login';
 import Register from '../pages/Register'
 import RouteGuard from './RouteGuard';
@@ -27,11 +24,8 @@ const AnimRoutes = () => {
     <AnimatePresence initial={true} mode='wait'>
       <Routes key={location.pathname} location={location}>
         <Route path='/' element={<Home />} />
-        <Route path='/about' element={<About />} />
         <Route path='/blog' element={user? <Blog/> : <Login />}/>
         <Route path='/write' element={user? <Write/> : <Login />}/>
-        <Route path='/portfolio' element={<Portfolio />} />
-        <Route path='/contact' element={<Contact />} />
         <Route path='/login' element={user ? <Home /> : <Login />}/>
         <Route path='/register' element={user ? <Home /> : <Register />}/>
         <Route path="/blog/:postId" element={<Single />}/>       

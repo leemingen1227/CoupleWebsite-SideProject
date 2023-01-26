@@ -25,7 +25,7 @@ const Write = () => {
       data.append("file", file);
       newPost.photo = filename;
       try {
-        await axios.post("imageUpload", data);
+        await axios.post("image", data);
       } catch (err) {}
     }
     try {

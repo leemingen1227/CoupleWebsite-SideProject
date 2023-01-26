@@ -6,6 +6,7 @@ const { v4 } = require('uuid');
 var authenticate = require('../authenticate');
 const cors = require('./cors');
 
+const { uploadFile, getFileStream } = require('../s3')
 
 const writeFile = promisify(fs.writeFile);
 const readdir = promisify(fs.readdir);
@@ -37,18 +38,59 @@ audioRouter.post('/',cors.corsWithOptions, (req, res) => {
   }
   const messageId = v4();
   writeFile(messageFolder + messageId, req.body.message, 'base64')
-    .then(() => {
+    .then(async () => {
       // res.status(201).json({ message: 'Saved message', filename: messageId });
+      // console.log("This is the request !!!!!!!!!!!!!");
+      // console.log(req.body);
+      const file = {
+        path: messageFolder + messageId,
+        filename: messageId,
+      }
+      console.log(file);
+      const result = await uploadFile(file);
+
+      console.log(result);
+
       res.statusCode = 201;
-      console.log(messageId);
       res.setHeader('Content-Type', 'application/json');
       res.json(messageId );
+      console.log("This is the response !!!!!!!!!!!!!");
+      console.log(res.body);
+
+
+
     })
     .catch(err => {
       console.log('Error writing message to file', err);
       res.sendStatus(500);
     });
 });
+
+// audioRouter.route('/:key')
+// .options(cors.corsWithOptions, (req, res) => { res.sendStatus(200); })
+// .get(cors.cors, (req, res) => {
+//   // readdir(messageFolder + req.params.key)
+//   const key = req.params.key;
+//   console.log(req.params)
+
+//   const readStream = getFileStream(key)
+//   readStream.pipe(res)
+//   console.log("Successfully get audio from S3")
+
+//   // getFileStream(key)
+//   //   .then(res => {
+//   //     console.log("Successfully get image from S3")
+//   //     // res.status(200).json({ messageFilenames });
+//   //     // blob = res.blob();
+//   //     // console.log(blob);
+//   //     // res.statusCode = 200;
+//   //     res.pipe(res );
+//   //   })
+//   //   .catch(err => {
+//   //     console.log('Error reading message directory', err);
+//   //     res.sendStatus(500);
+//   //   });
+// });
 
 audioRouter.get('/:audioId',cors.corsWithOptions, (req, res) => {
   readdir(messageFolder + req.params.audioId)

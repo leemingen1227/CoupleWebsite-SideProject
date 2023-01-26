@@ -96,7 +96,7 @@ router.post('/login', cors.corsWithOptions, passport.authenticate('local', {sess
   var token = authenticate.getToken({_id: req.user._id});
   res.statusCode = 200;
   res.setHeader('Content-Type', 'application/json');
-  res.json({username:req.body.username, id: req.user._id, profilePic: req.user.profilePic, success: true, token: token, status: 'You are successfully logged in!'});
+  res.json({username:req.body.username, id: req.user._id, profilePic: req.user.profilePic, profilePic2: req.user.profilePic2,success: true, token: token, status: 'You are successfully logged in!'});
 });
 
 router.get('/logout', (req, res) => {

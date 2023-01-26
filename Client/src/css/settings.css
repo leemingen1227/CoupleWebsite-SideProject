@@ -16,7 +16,7 @@
   .settingsUpdateTitle {
     font-size: 30px;
     margin-bottom: 20px;
-    color: lightcoral;
+    color: rgb(71, 53, 53);
   }
   
   .settingsDeleteTitle {
@@ -47,7 +47,7 @@
     width: 25px;
     height: 25px;
     border-radius: 50%;
-    background-color: lightcoral;
+    background-color: rgb(80, 54, 54);
     color: white;
     display: flex;
     align-items: center;
@@ -75,7 +75,7 @@
       border: none;
       border-radius: 10px;
       color: white;
-      background-color: teal;
+      background-color: rgb(56, 46, 43);
       padding: 10px;
       margin-top: 20px;
       cursor: pointer;
