@@ -20,9 +20,9 @@ The post you uploaded will be shown here.
 ## Record Page
 Record a message of what you want to say to the other person.
 
-<img width="1512" alt="截圖 2023-01-27 下午8 55 07" src="https://user-images.githubusercontent.com/85224108/215092044-f22fc97f-6926-4772-aa0b-334ad85d2e29.png">
+<img width="1512" alt="截圖 2023-01-27 下午8 55 07" src="https://user-images.githubusercontent.com/85224108/215092044-f22fc97f-6926-4772-aa0b-334ad85d2e29.png"
 
-<img width="1512" alt="截圖 2023-01-27 下午8 57 14" src="https://user-images.githubusercontent.com/85224108/215092480-82c78ab7-f739-4c1e-b303-5b3f99b3beb5.png">
+<img width="1512" alt="截圖 2023-01-27 下午9 11 20" src="https://user-images.githubusercontent.com/85224108/215095047-3c1ebfb2-9869-4049-83a6-27ef4e58d4ed.png">
 
 ## Setting Page
 Update your profile in setting page.
