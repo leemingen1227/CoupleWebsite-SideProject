@@ -11,12 +11,7 @@ var config = require('./config');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var dishRouter = require('./routes/dishRouter');
-var promoRouter = require('./routes/promoRouter');
-var leaderRouter = require('./routes/leaderRouter');
 var imageRouter = require('./routes/imageRouter');
-var favoriteRouter = require('./routes/favoriteRouter')
-var commmentRouter = require('./routes/commentRouter');
 var postRouter = require('./routes/postRouter');
 var audioRouter = require('./routes/audioRouter');
 var messageRouter = require('./routes/messageRouter');
@@ -60,13 +55,7 @@ app.use("/public/", express.static(path.join(__dirname, "/public/")));
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-
-app.use('/dishes', dishRouter);
-app.use('/promotions', promoRouter);
-app.use('/leaders', leaderRouter);
 app.use('/image', imageRouter); 
-app.use('/favorites',favoriteRouter);
-app.use('/comments', commmentRouter);
 app.use('/blog', postRouter);
 app.use('/audio', audioRouter);
 app.use('/messages', messageRouter);
