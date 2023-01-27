@@ -37,7 +37,7 @@ export default function Post({ post }) {
   }, []);
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col ">
       {post.photo && <img className="postImg" src={image} alt="" />}
       <div className="flex flex-col items-center gap-y-1">
         <div className="postCats">

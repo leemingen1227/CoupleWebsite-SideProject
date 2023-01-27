@@ -19,7 +19,7 @@ const Blog = () => {
       let token = localStorage.getItem('token');
       setAuthToken(token);
       const res = await axios.get("blog" );
-      setPosts(res.data);
+      setPosts(res.data.reverse());
     };
     fetchPosts();
   }, [search]);

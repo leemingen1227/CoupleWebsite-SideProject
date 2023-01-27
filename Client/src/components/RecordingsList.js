@@ -127,7 +127,7 @@ export default function RecordingsList({ audio }) {
             {recordings.map((record) => (
               <div className="record" key={record.key}>
                 <audio controls src={record.audio} />
-                <button className=" mx-auto bg-slate-600 shadow-lg mb-[30px]  mt-5 disabled:bg-slate-200   "  onClick={() => handleSave(record)}>Submit</button>
+                <button className=" ml-3 my-2 bg-slate-50 rounded-lg px-2  "  onClick={() => handleSave(record)}>Submit</button>
                 <div className="delete-button-container">
                   <button
                     className="delete-button"

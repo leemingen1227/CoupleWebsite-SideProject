@@ -27,7 +27,12 @@ const Card = ({audioFile}) => {
     { value: '#f2c758' },
     { value: '#ffffff' },
   ];
-
+  const colors2 = [
+    { value: '#272425' },
+    { value: '#ba8f8a' },
+    { value: '#d17777' },
+    { value: '#ffffff' },
+  ];
   // /Users/leemingen/personal/CoupleServer/public/messages/099d4c94-48ed-4560-ae20-dc969e66ecdd
 
   const PF ="http://localhost:3000/public/messages/";
@@ -109,15 +114,26 @@ const Card = ({audioFile}) => {
         </div>
         {/* colors */}
         <ul className='flex gap-x-[10px]'>
-          {colors.map((color, index) => {
-            return (
-              <li
-                key={index}
-                style={{ backgroundColor: color.value }}
-                className='w-8 h-8 rounded-full cursor-pointer'
-              ></li>
-            );
-          })}
+          {
+            author === 'him' ?(
+              colors.map((color, index) => {
+                return (
+                  <li
+                    key={index}
+                    style={{ backgroundColor: color.value }}
+                    className='w-8 h-8 rounded-full cursor-pointer'
+                  ></li>
+                )}
+            )):(
+              colors2.map((color, index) => {
+                return (
+                  <li
+                    key={index}
+                    style={{ backgroundColor: color.value }}
+                    className='w-8 h-8 rounded-full cursor-pointer'
+                  ></li>
+                )}
+            ))}
         </ul>
         {/* card image */}
         
